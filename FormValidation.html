@@ -1,0 +1,111 @@
+<html>
+<head>
+<style>
+body{
+padding:10px 50px;
+}
+.formerror{
+color:red;
+}
+.formdesign{
+font-size:20px;
+}
+.formdesign input{
+width:50%;
+padding:12px 20px;
+border:1px solid blue;
+margin:14px;
+border-radius:4px;
+font-size:15px;
+}
+.but{
+border-radius:9px;
+font-size:25px;
+width:100px;
+height:50px;
+margin:22px 20px;
+}
+
+</style>
+
+<script>
+function clearerror()
+{
+errors= document.getElementByClassName('formerror');
+for(let item of errors)
+{
+item.innerHTML="";
+}
+}
+function seterror(id,error)
+{
+element = document.getElementById(Id);
+element.getElementByClassName('formerror')[0].innerHTML=error;
+
+}
+function validateform()
+{
+
+var returnval = true;
+clearerror();
+var name= document.forms['myForm']["fname"].value;
+if(name.length<5){
+seterror("name","*length of name is short");
+returnval = false;
+}
+if(name.length==0){
+seterror("name","*length of name cannot be zeero");
+returnval = false;
+}
+var email= document.forms['myForm']["femail"].value;
+if(email.length>15){
+seterror("email","*length of email is to long");
+returnval = false;
+}
+var phone= document.forms['myForm']["fmobile"].value;
+if(phone.length!=10){
+seterror("phone","*phone number should be of 10 digits");
+returnval = false;
+}
+var password= document.forms['myForm']["fpass"].value;
+if(password.length<6){
+seterror("pass","*password atleast 6 digits");
+returnval = false;
+}
+var cpassword= document.forms['myForm']["fcpass"].value;
+if(cpassword.length!=password){
+seterror("cpass","*password atleast 6 digits");
+returnval = false;
+}
+
+return returnval;
+
+}
+</script>
+</head>
+<body>
+<form action="#" onsubmit="return validateform()" method="post" name="myForm">
+<div class="formdesign" id="name">
+Enter Name:<input type="text" placeholder="Enter Name" name="fname" required/><b><span class="formerror"></span></b>
+</div>
+
+<div class="formdesign" id="email">
+Enter Email:<input type="email" placeholder="Enter Email" name="femail" required/><b><span class="formerror"></span></b>
+</div>
+
+<div class="formdesign" id="phone">
+Enter Mobile:<input type="phone" name="fmobile" placeholder="Enter Number"required/><b><span class="formerror"></span></b>
+</div>
+
+<div class="formdesign" id="pass">
+Enter Password:<input type="password" placeholder="password" name="fpass" required/><b><span class="formerror"></span></b>
+<div>
+
+<div class="formdesign" id="cpass">
+Confirm password:<input type="password" placeholder="password" name="fcpass"required/><b><span class="formerror"></span></b>
+</div>
+
+<button class="but" value="submit">submit</button>
+</form>
+</body>
+</html>
